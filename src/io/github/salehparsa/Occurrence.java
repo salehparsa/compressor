@@ -6,6 +6,7 @@ import java.util.*;
  * Created by saleh on 9/19/16.
  */
 public class Occurrence {
+    FileClass fc = new FileClass();
     public void Occurance (String [] arr)
     {
         int end = arr.length;
@@ -15,10 +16,10 @@ public class Occurrence {
         for(int i = 0; i < end; i++){
             set.add(arr[i]);
         }
-        Iterator it = set.iterator();
-        int j =0;
-        for (String s: set) {
-            System.out.println(it.next() + " " + Integer.toString(Collections.frequency(asList,s)));
-        }
+       // Iterator it = set.iterator();
+        fc.FileWriter(set);
+     //   for (String s: set) {
+        //    System.out.println(it.next() + " " + Integer.toString(Collections.frequency(asList,s)));
+     //   }
     }
 }

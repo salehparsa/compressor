@@ -1,14 +1,15 @@
 package io.github.salehparsa;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Created by saleh on 9/19/16.
  */
 public class FileClass {
+    File value = new File("value.txt");
+    File timeFile = new File("time.txt");
     public void FileReader()
     {
         String[] value = new String[70520];
@@ -33,6 +34,47 @@ public class FileClass {
             in.close();
         }catch (Exception e){//Catch exception if any
             System.err.println("Error: " + e.getMessage());
+        }
+        Occurrence occurrence = new Occurrence ();
+        occurrence.Occurance(value);
+        ArrayToFile(time);
+    }
+    public void FileWriter(Set<String> set)
+    {
+       // String content = new String();
+        try (FileOutputStream fop = new FileOutputStream(value)) {
+            // if file doesn't exists, then create it
+            if (!value.exists()) {
+                value.createNewFile();
+            }
+            OutputStreamWriter osw = new OutputStreamWriter(fop);
+            Iterator it = set.iterator();
+            for (String s: set){
+                osw.write(it.next() + "\n");
+            }
+            osw.close();
+            System.out.println("Done");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ArrayToFile(String [] arr)
+    {
+        // String content = new String();
+        try (FileOutputStream fop = new FileOutputStream(timeFile)) {
+            // if file doesn't exists, then create it
+            if (!timeFile.exists()) {
+                timeFile.createNewFile();
+            }
+            OutputStreamWriter osw = new OutputStreamWriter(fop);
+            for (int i =0; i <arr.length ; i++){
+                osw.write(arr[i]+ "\n");
+            }
+            osw.close();
+            System.out.println("Done");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
