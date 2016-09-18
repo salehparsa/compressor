@@ -7,6 +7,7 @@ import java.util.*;
  */
 public class Occurrence {
     FileClass fc = new FileClass();
+    // Function to check how many times we're seeing one value
     public void Occurance (String [] arr)
     {
         int end = arr.length;
